@@ -25,14 +25,14 @@ decode = concatMap (uncurry replicate)
 -- Task 4:
 data RLE a = Multiple Int a | Single a deriving Show
 encodeRLE :: Eq a => [a] -> [RLE a]
-encodeRLE xs = map 
-    (\(i, c) -> 
+encodeRLE xs = map (
+    \(i, c) -> 
         if i == 1 then Single c 
         else Multiple i c) (encode xs)          
 
 -- Task 5:
 decodeRLE :: Eq a => [RLE a] -> [a]
-decodeRLE = concatMap 
-    (\rle -> case rle of
+decodeRLE = concatMap (
+    \rle -> case rle of
         Single x -> [x]
         Multiple i x -> replicate i x)
